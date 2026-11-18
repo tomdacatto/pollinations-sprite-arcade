@@ -4,7 +4,7 @@ export const EXPIRY_DAYS = 1;
 
 // Both are free for every visitor (paid_only is false on /v1/models).
 export const CODE_MODEL = "openai/gpt-6-luna"; // writes the game and plans its sprites
-export const IMAGE_MODEL = "zimage"; // draws each sprite
+export const IMAGE_MODEL = "tongyi-mai/z-image-turbo"; // draws each sprite (the alias zimage)
 
 export const SPRITE_SIZE = 256; // pixels, square
 export const MAX_SPRITES = 4;

@@ -11,7 +11,7 @@ Pollinations quest [#20021](https://github.com/pollinations/pollinations/issues/
 ## How it works
 
 1. **A model writes the game and plans its sprites.** `openai/gpt-6-luna` replies with up to four sprite lines (`- name: image prompt`) and one self-contained HTML game that draws them as `window.SPRITES.<name>`. Code reads the reply ([`forge.js`](forge.js)): it refuses a reply with no HTML block, no canvas, a page over 60 KB, or code that uses a sprite that was not listed, and tells the model what was wrong for one retry.
-2. **A free image model draws each sprite** (`zimage`, 256 px) on a flat magenta background, and **code cuts it out**: `keyMagenta` turns magenta to transparent, feathers the edge and pulls the pink out of it, so the sprites sit on the game with no halo.
+2. **A free image model draws each sprite** (`tongyi-mai/z-image-turbo` (alias `zimage`), asked for 256 px) on a flat magenta background, and **code cuts it out**: `keyMagenta` turns magenta to transparent, feathers the edge and pulls the pink out of it, so the sprites sit on the game with no halo.
 3. **The game runs in `<iframe sandbox="allow-scripts">`.** It has no origin, so model-written code cannot read the visitor's Pollen sign-in key from `sessionStorage`. A crash inside it is posted to the page, which offers to have the model fix it.
 4. **Change, download, share.** "Change the game" sends the request back to the model with the whole conversation. "Download" gives one HTML file. "Copy a link" puts the whole game, compressed, in the URL fragment (nothing is uploaded); whoever opens it plays at once, with no sign-in and no Pollen.
 
@@ -38,7 +38,7 @@ npm test
 ## Not verified
 
 - Games are model-written and untested beyond a run or two: I played one for a few seconds with synthetic keys, did not play either to a game over, and do not know how often a game crashes. The crash banner and the "ask the model to fix it" button were not triggered.
-- The model does the game design; sprite style is whatever `zimage` returns for the prompt, and magenta keying can leave a faint fringe on pink objects.
+- The model does the game design; sprite style is whatever `z-image-turbo` returns for the prompt, and magenta keying can leave a faint fringe on pink objects.
 - Desktop Chrome only: no phone, no touch controls, no Safari or Firefox (sprites are saved as WebP; where a browser cannot encode it the canvas falls back to PNG and links get longer, which I did not test).
 - A shared link is the whole game, about 20 KB here and more with more sprites; some chat apps cut very long links, which is why Download exists.
 - The sign-in redirect on the live address was not run (the key was loaded into the page for the tests).
