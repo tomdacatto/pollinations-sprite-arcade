@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sprite Arcade: describe a game, get a playable game</title>
+    <meta name="description" content="Describe the game you dream of. A model writes it, a free image model draws its sprites, and you play it in a sandboxed frame, change it, download it or share a link. Paid with your own Pollen.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top">
+        <a class="brand" href="./">Sprite Arcade</a>
+        <div class="session">
+            <span id="whoami" hidden>Signed in with your Pollen</span>
+            <button id="sign-in" class="button primary" type="button">Sign in with Pollen</button>
+            <button id="sign-out" class="button" type="button" hidden>Sign out</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h1>Describe a game. Play it a minute later.</h1>
+            <p>
+                A model writes your game as one HTML file and plans its sprites; a free image model draws them and code cuts them out of their background.
+                The game runs in a sandboxed frame that cannot reach your Pollen sign-in. Change it in words, download it as one file, or share a link that plays without any sign-in.
+            </p>
+        </section>
+
+        <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+        <section id="make" class="card">
+            <h2>1. Describe it</h2>
+            <label class="field">The game you dream of
+                <textarea id="idea" rows="3" maxlength="400">A rocket dodges falling asteroids and collects glowing stars. It speeds up as the score grows.</textarea>
+            </label>
+            <div class="row">
+                <button id="forge" class="button primary" type="button">Make my game</button>
+                <span id="state" class="fine"></span>
+            </div>
+        </section>
+
+        <section id="stage" class="card" hidden>
+            <h2 id="title">2. Play it</h2>
+            <p id="banner" class="banner" hidden></p>
+            <iframe id="game" title="Your game" sandbox="allow-scripts" width="660" height="500"></iframe>
+            <p class="fine">Click the game once so it receives the keys.</p>
+            <div id="sprites" class="sprites"></div>
+            <div id="tools">
+                <label class="field">Change it
+                    <input id="change" type="text" maxlength="300" placeholder="make the stars worth 5 points and add a shield">
+                </label>
+                <div class="row">
+                    <button id="apply" class="button" type="button">Change the game</button>
+                    <button id="download" class="button" type="button">Download</button>
+                    <button id="share" class="button" type="button">Copy a link</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="foot">
+        <p>
+            Every model call runs on <a href="https://pollinations.ai/?ref=badge">Pollinations</a>. This page has no server and keeps no key: you sign in with
+            <a href="https://github.com/pollinations/pollinations/blob/main/BRING_YOUR_OWN_POLLEN.md">your own Pollen</a> and a game costs one to two cents.
+            Games are written by a model: they may have bugs, and the app asks the model to fix the ones it sees. Made with pollinations.ai.
+        </p>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
